@@ -1,0 +1,70 @@
+
+
+h1 {
+    text-align: center;
+}
+
+
+.choices {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.order{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+
+    
+}
+
+.customCarOrders {
+    text-align: center;
+}
+#placeOrder{
+    background-color: darkgreen;
+    color: white;
+    font-size: large;
+    height: 50px;
+    width: 200px;
+    border-radius: 15px;
+    border: solid green 1px
+}
+.choices__technologies {
+    background-color: lightyellow;
+    flex-basis: 30%;
+    border: 2px dotted navy;
+    padding: .4rem 2rem;
+    margin-top: 20px;
+    border-radius: 15px;
+    
+}
+
+.choices__paints {
+    background-color: lightyellow;
+    flex-basis: 30%;
+    border: 2px dotted navy;
+    padding: .4rem 2rem;
+    border-radius: 15px;
+   
+}
+
+.choices__interiors{
+    background-color: lightyellow;
+    flex-basis: 30%;
+    border: 2px dotted navy;
+    padding: .4rem 2rem;
+    border-radius: 15px;
+    
+}
+
+.choices__wheels {
+    background-color: lightyellow;
+    flex-basis: 30%;
+    border: 2px dotted navy;
+    padding: .4rem 2rem ;
+    margin-top: 20px;
+    border-radius: 15px;
+}
