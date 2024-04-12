@@ -1,24 +1,37 @@
+import { render } from "./main.js"
+import { completeOrder } from "./transient.js"
 
 export const Orders = async () => {
-    const orderPromise = await fetch("http://localhost:8088/orders?_expand=paint&_expand=interior&_expand=technology&_expand=wheel")
+    const orderPromise = await fetch("https://localhost:7119/orders")
     const orders = await orderPromise.json()
-    //console.log(orders)
+    document.addEventListener("click", handleFulfillClick)
+
     let ordersHTML = ""
     const divStringArray = orders.map(
         (order) => {
-            const orderPrice = order.paint.price + order.interior.price + order.technology.price + order.wheel.price
-            const formattedPrice = orderPrice.toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD"
-            })
-            return`<section class="order">
-            <div>Order #${order.id} cost ${formattedPrice}</div>
-           </section>`
+            const orderPrice = order.totalPrice
+            // const formattedPrice = orderPrice.toLocaleString("en-US", {
+            //     style: "currency",
+            //     currency: "USD"
+            // })
+
+            return `<section class="order">
+            <div>Order #${order.id} cost $${orderPrice}.00</div>
+            <input type="button" name="complete" id=${order.id} value="Complete">
+           </section>
+           `
         }
     )
     ordersHTML += divStringArray.join("")
     return ordersHTML
 }
 
-const customEvent = new CustomEvent("orderPlaced")
-document.dispatchEvent(customEvent)
+
+const handleFulfillClick =  (clickevent) => {
+    if (clickevent.target.name === "complete") {
+        const orderId = clickevent.target.id
+        completeOrder(orderId)
+        render()
+
+    }
+}

@@ -8,7 +8,7 @@ import { Orders } from "./Orders.js"
 
 
 
-const render = async () => {
+export const render = async () => {
     const paintOptionsHTML = await getPaints()
     const interiorOptionsHTML = await getInteriors()
     const wheelOptionsHTML = await getWheels()

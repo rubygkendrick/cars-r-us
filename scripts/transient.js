@@ -11,21 +11,21 @@ const transientState = {
 
 export const setPaint = (chosenPaint) => {
     transientState.paintId = chosenPaint
-    
+
 }
 
 export const setWheel = (chosenWheel) => {
     transientState.wheelId = chosenWheel
-  
+
 }
 
 export const setInterior = (chosenInterior) => {
     transientState.interiorId = chosenInterior
- 
+
 }
 export const setTechnology = (chosenTechnology) => {
     transientState.technologyId = chosenTechnology
-    
+
 }
 
 
@@ -33,24 +33,31 @@ export const setTechnology = (chosenTechnology) => {
 
 export const placeOrder = async () => {
     let postOptions = {}
-    if ((transientState.technologyId === 0) || (transientState.wheelId === 0) || (transientState.interiorId === 0) || (transientState.paintId === 0)){
+    if ((transientState.technologyId === 0) || (transientState.wheelId === 0) || (transientState.interiorId === 0) || (transientState.paintId === 0)) {
         window.alert("NO!")
     } else {
         postOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json" 
-        },
-        body: JSON.stringify(transientState)
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(transientState)
+        }
     }
-}
-        const response = await fetch("http://localhost:8088/orders", postOptions)
-        const customEvent = new CustomEvent("newOrderCreated")
-        document.dispatchEvent(customEvent)
-        setInterior(0)
-        setTechnology(0)
-        setPaint(0)
-        setWheel(0)
+    const response = await fetch("https://localhost:7119/orders", postOptions)
+    const customEvent = new CustomEvent("newOrderCreated")
+    document.dispatchEvent(customEvent)
+    setInterior(0)
+    setTechnology(0)
+    setPaint(0)
+    setWheel(0)
 
 }
+
+export const completeOrder = async (orderId) => {
+    await fetch(`https://localhost:7119/orders/${orderId}/fulfill`, {
+        method: "POST",
+    });
+    document.dispatchEvent(new CustomEvent("stateChanged"));
+};
 

@@ -1,3 +1,4 @@
+import { render } from "./main.js";
 import { placeOrder } from "./transient.js";
 
 
@@ -10,6 +11,7 @@ const handlePlaceOrderClick = (clickevent) => {
     if (clickevent.target.id === "placeOrder") {
         const convertedToInteger = JSON.stringify(clickevent.target.id)
         placeOrder(convertedToInteger)
-        
+        render()
+            
     }
 }

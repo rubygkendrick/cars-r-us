@@ -1,7 +1,7 @@
 import { setTechnology } from "./transient.js"
 
 export const getTechnologies = async () => {
-    const response = await fetch("http://localhost:8088/technologies")
+    const response = await fetch("https://localhost:7119/technologies")
     const techPromise = await response.json()
     
     document.addEventListener("change", techChangeHandler)
@@ -10,7 +10,7 @@ export const getTechnologies = async () => {
 
     const divStringArray = techPromise.map(
         (tech) => {
-            return  `<option value="${tech.id}">${tech.type}</option>`
+            return  `<option value="${tech.id}">${tech.package}</option>`
         }
     )
     

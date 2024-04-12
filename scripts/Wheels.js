@@ -1,7 +1,7 @@
 import { setWheel } from "./transient.js"
 
 export const getWheels = async () => {
-    const response = await fetch(" http://localhost:8088/wheels")
+    const response = await fetch(" https://localhost:7119/wheels")
     const wheelPromise = await response.json()
     //console.log(wheelPromise)
     document.addEventListener("change", wheelChangeHandler)
@@ -10,7 +10,7 @@ export const getWheels = async () => {
 
     const divStringArray = wheelPromise.map(
         (wheel) => {
-            return  `<option value="${wheel.id}">${wheel.type}</option>`
+            return  `<option value="${wheel.id}">${wheel.style}</option>`
         }
     )
     // This function needs to return a single string, not an array of strings

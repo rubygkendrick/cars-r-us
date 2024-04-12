@@ -1,7 +1,7 @@
 import { setPaint } from "./transient.js"
 
 export const getPaints = async () => {
-    const response = await fetch("http://localhost:8088/paints")
+    const response = await fetch("https://localhost:7119/paintcolors")
     const paintPromise = await response.json()
     //console.log(paintPromise)
     document.addEventListener("change", paintChangeHandler)
